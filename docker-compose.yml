@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  server_app:
+    build:
+      context: service
+    restart: always
+
+  client_app:
+    build:
+      context: client
+    restart: always
+    depends_on:
+      - server_app
+      - fluentbit
+    
+  fluentbit:
+    build:
+      context: fluentbit
+    restart: always
